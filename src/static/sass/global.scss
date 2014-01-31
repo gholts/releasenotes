@@ -1,0 +1,21 @@
+// importing base mixins
+@import "compass/utilities/general/clearfix";
+@import "blueprint/grid";
+@import "compass/css3";
+@import "compass";
+
+@import "partials/base";
+
+$blueprint-grid-columns: 12;
+$blueprint-container-size: 940px;
+$blueprint-grid-margin: 20px;
+
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+}

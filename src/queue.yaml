@@ -1,0 +1,9 @@
+# for more information about this file, go to
+# ---------------------------------------------------------------------
+# http://code.google.com/appengine/docs/python/config/queue.html
+# ---------------------------------------------------------------------
+
+queue:
+
+- name: backup
+  rate: 100/s

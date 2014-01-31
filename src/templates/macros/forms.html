@@ -1,0 +1,59 @@
+{# macros for forms #}
+
+{# field_with_errors
+ #
+ # The fields_with_errors macro can be used as a convenient way to build up forms. Use it like this:
+ #
+ #  <form method="POST" action="/my/url/">
+ #    {{ field_with_errors(my_form.field_name) }}
+ #  </form>
+ #
+ # You will automatically get labels, embedded errors, description, and of course, the field itself.
+ #
+ # @param field the Form field to render
+ #}
+{% macro field_with_errors(field) %}
+    <div>
+        {% if field.type != 'HiddenField' %}
+            {% if field.flags.required %}
+                {{ field.label(class='required') }}
+            {% else %}
+                {{ field.label }}
+            {% endif %}
+        {% endif %}
+
+        {% set css_class = kwargs.pop('class', '') %}
+        {% if field.errors %}
+            {% set css_class = css_class + ' has-error' %}
+        {% endif %}
+
+        {{ field(class=css_class, **kwargs) }}
+
+        {% if field.type != 'HiddenField' and field.description %}
+            <span class="tooltip">{{ field.description }}</span>
+        {% endif %}
+
+        {% if field.errors %}
+            <ul class="error">{% for error in field.errors %}<li>{{ error|e }}</li>{% endfor %}</ul>
+        {% endif %}
+    </div>
+{% endmacro %}
+
+{# submit_button
+ #
+ # Creates submit button. You must pass its value, like this:
+ #
+ #  <form>
+ #    {{ submit_button('my-name') }}
+ #  </form>
+ #
+ # @param value the value of the <input type="submit"/>
+ #}
+{% macro submit_button(value, id=None, cancel_url=None) %}
+    <div class="clear">
+        <input type="submit" value="{{ value }}" {% if id %}id="{{ id }}"{% endif %}/>
+        {% if cancel_url %}
+            <a href="{{ cancel_url }}">Cancel</a>
+        {% endif %}
+    </div>
+{% endmacro %}

@@ -1,0 +1,10 @@
+/* line 1, ../sass/global.scss */
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+/* line 5, ../sass/global.scss */
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}

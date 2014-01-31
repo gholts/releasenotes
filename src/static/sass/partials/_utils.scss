@@ -1,0 +1,85 @@
+$DEFAULT_BORDER_RADIUS:     10px;
+$DEFAULT_BOX_SHADOW:        10px 10px 20px -10px #666666;
+
+@mixin rounded($radius: $DEFAULT_BORDER_RADIUS) {
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin box-shadow($shadow: $DEFAULT_BOX_SHADOW) {
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin background($from, $to) {
+    background-color: $from;
+    background-image: -moz-linear-gradient(top,  $from,  $to);
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+    background-image: -webkit-linear-gradient(top, $from, $to);
+    background-image: -ms-linear-gradient(top, $from, $to);
+    background-image: -o-linear-gradient(top, $from, $to);
+    background-image: linear-gradient(top, $from, $to);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+@mixin background-menu-hor($from, $to) {
+    $color-border: #E0E0E0;
+    background-color: $from;
+    background-image: -moz-linear-gradient(left, $from 75%, $to 99%, $color-border 99%);/* Mozilla Firefox */ 
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, $from), color-stop(0.99, $to), color-stop(0.99, $color-border)); /* Webkit (Safari/Chrome 10) */ 
+    background-image: -webkit-linear-gradient(left, $from 75%,  $to 99%, $color-border 99%);/* Webkit (Chrome 11+) */
+    background-image: -ms-linear-gradient(left, $from 75%, $to 99%, $color-border 99%);/* IE10 */ 
+    background-image: -o-linear-gradient(left, $from 75%, $to 99%, $color-border 99%);/* Opera */ 
+    background-image: linear-gradient(left,  $from 75%, $to 99%, $color-border 99%);/* Proposed W3C Markup */ 
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+
+@mixin background-narrow-top($from,$to){
+    background-color: $to;
+    background-image: -moz-linear-gradient(top, $from 0%, $to 20%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $from), color-stop(0.2, $to));
+    background-image: -webkit-linear-gradient(top, $from 0%, $to 20%);
+    background-image: -ms-linear-gradient(top, $from 0%, $to 20%);
+    background-image: -o-linear-gradient(top, $from 0%, $to 20%);
+    background-image: linear-gradient(top, $from 0%, $to 20%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+@mixin background-narrow-bottom($from,$to){
+    background-color: $to;
+    background-image: -moz-linear-gradient(top, $from 80%, $to 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.8, $from), color-stop(1, $to));
+    background-image: -webkit-linear-gradient(top, $from 80%, $to 100%);
+    background-image: -ms-linear-gradient(top, $from 80%, $to 100%);
+    background-image: -o-linear-gradient(top, $from 80%, $to 100%);
+    background-image: linear-gradient(top, $from 80%, $to 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+@mixin background-topfade($from) {
+    $color-trans:  rgba(255,255,255,0);
+    $white: $from;
+    background-color: none;
+    background-image: -moz-linear-gradient(top, $white 0%, $color-trans 100%); /* Mozilla Firefox */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, $white), color-stop(1, $color-trans));/* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-linear-gradient(top, $white 0%, $color-trans 100%);/* Webkit (Chrome 11+) */
+    background-image: -ms-linear-gradient(top, $white 0%, $color-trans 100%);/* IE10 */ 
+    background-image: -o-linear-gradient(top, $white 0%, $color-trans 100%);/* Opera */
+    background-image: linear-gradient(top, $white 0%, $color-trans 100%);/* Proposed W3C Markup */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#{$white}', endColorstr='#00FFFFFF');
+}
+
+@mixin background-bottomfade($from) {
+    $color-trans:  rgba(255,255,255,0);
+    $white: $from;
+    background-color: none;
+    background-image: -moz-linear-gradient(bottom, $white 0%, $color-trans 100%); /* Mozilla Firefox */
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, $white), color-stop(1, $color-trans));/* Webkit (Safari/Chrome 10) */
+    background-image: -webkit-linear-gradient(bottom, $white 0%, $color-trans 100%);/* Webkit (Chrome 11+) */
+    background-image: -ms-linear-gradient(bottom, $white 0%, $color-trans 100%);/* IE10 */ 
+    background-image: -o-linear-gradient(bottom, $white 0%, $color-trans 100%);/* Opera */
+    background-image: linear-gradient(bottom, $white 0%, $color-trans 100%);/* Proposed W3C Markup */
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#00FFFFFF', endColorstr='#{$white}');
+}

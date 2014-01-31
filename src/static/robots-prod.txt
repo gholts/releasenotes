@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://www.base-webapp2-jinja2.com/sitemap.xml
