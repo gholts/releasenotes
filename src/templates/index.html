@@ -1,7 +1,39 @@
 {% extends 'base.html' %}
 
-{% block heading %}Stuff!{% endblock %}
+{% block heading %}Release Notes!{% endblock %}
 
 {% block page_content %}
-    More stuff!
+    <p>What's the point of this page? To make generating release notes super easy!</p>
+
+    {% if email_html %}
+        <h4>Generated notes!</h4>
+        <p>Looks like you have some generated notes. Awesome! Go ahead and copy and paste this into an email.</p>
+        <div style="font-family: {{ font }}">
+            <p><em>&lt;Some kind of clever greeting and intro should go here...&gt;</em></p>
+            {{ email_html|safe }}
+            <br>
+            <p><em>&lt;End with a bang! Edit this to say something else&gt;</em></p>
+        </div>
+    {% endif %}
+
+    <h4>Release Notes Form</h4>
+
+    <div id="release-notes-form">
+        <form action="/" method="post" role="form">
+            <div class="form-group">
+                <label for="txtSubject">Email subject:</label>
+                <input type="text" name="subject" class="form-control" id="txtSubject" value="RELEASE NOTES "/>
+            </div>
+            <div class="form-group">
+                <label for="txtProjects">Projects:</label>
+                <input type="text" name="projects" class="form-control" id="txtProjects" placeholder="MS, SM"/>
+                <p class="help-block">Comma-separated list of the projects you are pasting in issues for.</p>
+            </div>
+            <div class="form-group">
+                <label for="issueTable">Table of issues, probably from Jira</label>
+                <textarea rows="10" cols="50" class="form-control" id="issueTable" name="issues" placeholder="You must include the table headers here"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
 {% endblock %}
