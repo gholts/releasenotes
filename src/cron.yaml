@@ -1,9 +1,0 @@
-# for more information about this file, go to
-# ---------------------------------------------------------------------
-# http://code.google.com/appengine/docs/python/config/cron.html
-# ---------------------------------------------------------------------
-cron:
-
-- description: Dscache Scrubber
-  url: /dscache/vacuum/
-  schedule: every 2 hours synchronized
