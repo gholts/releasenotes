@@ -1,11 +1,11 @@
 # Require any additional compass plugins here.
 
 # Set this to the root of your project when deployed:
-http_path = "/"
-css_dir = "css"
-sass_dir = "scss"
-images_dir = "images"
-javascripts_dir = "js"
+http_path = "src/templates"
+css_dir = "src/static/css"
+sass_dir = "src/static/scss"
+images_dir = "src/static/images"
+javascripts_dir = "src/static/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed

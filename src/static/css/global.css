@@ -2,3 +2,37 @@
 body {
   padding-bottom: 70px;
 }
+
+/* line 5, ../scss/global.scss */
+.story-type {
+  background-color: #ffdd79;
+}
+
+/* line 9, ../scss/global.scss */
+.bug-type {
+  background-color: #d04437;
+  color: lightgrey;
+}
+
+/* line 14, ../scss/global.scss */
+.technical-debt-type {
+  background-color: grey;
+  color: lightgrey;
+}
+
+/* line 19, ../scss/global.scss */
+.spike-type {
+  background-color: purple;
+  color: white;
+}
+
+/* line 24, ../scss/global.scss */
+.improvement-type {
+  background-color: #009900;
+  color: white;
+}
+
+/* line 29, ../scss/global.scss */
+.injected-type {
+  color: red;
+}

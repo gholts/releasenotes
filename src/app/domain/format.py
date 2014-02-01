@@ -1,10 +1,10 @@
 """
 format
 """
-from keys import JIRA_TABLE_KEYS
+from keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING, COLOURFUL_ISSUE_STRING
 
 
-def format_email_text(issue_list, products):
+def format_email_text(issue_list, products, format=FORMAT_KEYS.VANILLA):
     """
     Takes a list of issues and returns the full email required for a release
     """
@@ -12,9 +12,6 @@ def format_email_text(issue_list, products):
     tldr = {product:[] for product in products}
 
     email_html = ""
-
-    issue_string = "<a href='http://vendasta.jira.com/browse/{0}'>{0}</a> " \
-                   " {1} - {2} - {3}<br>"
 
     for issue in issue_list:
         key = issue.get(JIRA_TABLE_KEYS.KEY)
@@ -26,7 +23,14 @@ def format_email_text(issue_list, products):
         project = key.split("-")[0]
         tldr[project].append(summary)
 
-        formatted_string = issue_string.format(key, summary, issue_type, status)
+        if format == FORMAT_KEYS.COLOURFUL:
+            issue_class = issue_type.lower().split(" ")
+            issue_class = "-".join(issue_class) + "-type"
+            formatted_string = COLOURFUL_ISSUE_STRING.format(key, summary, issue_type, status, issue_class)
+        else:
+            # Must be vanilla
+            formatted_string = VANILLA_ISSUE_STRING.format(key, summary, issue_type, status)
+
         email_html += formatted_string
 
     tldr_html = "<strong>TL;DR</strong>:<br>"
