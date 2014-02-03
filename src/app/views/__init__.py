@@ -13,7 +13,8 @@ class TemplatedView(RequestHandler):
 
     @cached_property
     def jinja2(self):
-        """ Get that jinja fired up
+        """
+        Get that jinja fired up
         """
         return jinja2.get_jinja2(app=self.app)
 
