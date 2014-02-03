@@ -8,6 +8,11 @@ def format_email_text(issue_list, products, format=FORMAT_KEYS.VANILLA):
     """
     Takes a list of issues and returns the full email required for a release
     """
+    if not issue_list:
+        raise ValueError("The issue list cannot be empty")
+    if not products:
+        raise ValueError("Products cannot be empty")
+
     # Set up the tldr dictionaries
     tldr = {product:[] for product in products}
 

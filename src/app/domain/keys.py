@@ -1,7 +1,8 @@
 """
 keys
 """
-VANILLA_ISSUE_STRING = "<a href='http://vendasta.jira.com/browse/{0}'>{0}</a> {1} - {2} - {3}<br>"
+VANILLA_ISSUE_STRING = "[{2}] <a href='http://vendasta.jira.com/browse/{0}'>{0}</a> " \
+                         "{1} - {3}<br>"
 COLOURFUL_ISSUE_STRING = "[<span class='{4}'>{2}</span>] <a href='http://vendasta.jira.com/browse/{0}'>{0}</a> " \
                          "{1} - {3}<br>"
 
