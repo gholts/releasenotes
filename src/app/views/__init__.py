@@ -1,16 +1,21 @@
-import logging
+"""
+View code
+"""
 
-from google.appengine.api import users
 from webapp2 import RequestHandler, cached_property
 from webapp2_extras import jinja2
 
-import json
-
 
 class TemplatedView(RequestHandler):
+    """
+    Base view for all other views to extend
+    """
 
     @cached_property
     def jinja2(self):
+        """
+        Get that jinja fired up
+        """
         return jinja2.get_jinja2(app=self.app)
 
     def render_response(self, template, **context):

@@ -1,37 +1,71 @@
 {% extends 'base.html' %}
 
-{% block heading %}Release Notes!{% endblock %}
+{% block home_active %}class='active'{% endblock %}
+
+{% block heading %}Release Notes Form{% endblock %}
 
 {% block page_content %}
-    <p>What's the point of this page? To make generating release notes super easy!</p>
 
     {% if email_html %}
         <h4>Generated notes!</h4>
         <p>Looks like you have some generated notes. Awesome! Go ahead and copy and paste this into an email.</p>
-        <div style="font-family: {{ font }}">
-            <p><em>&lt;Some kind of clever greeting and intro should go here...&gt;</em></p>
+
+        <div style="font-family: {{ font }}; font-size: {{ font_size }}">
+            <p>&lt;Some kind of greeting and intro should go here...&gt;</p>
             {{ email_html|safe }}
             <br>
-            <p><em>&lt;End with a bang! Edit this to say something else&gt;</em></p>
+            <p>&lt;End with a bang! Edit this to say something else&gt;</p>
         </div>
-    {% endif %}
 
-    <h4>Release Notes Form</h4>
+        <h3>Doing another release? <small>Here's another form:</small></h3>
+    {% endif %}
 
     <div id="release-notes-form">
         <form action="/" method="post" role="form">
             <div class="form-group">
-                <label for="txtSubject">Email subject:</label>
-                <input type="text" name="subject" class="form-control" id="txtSubject" value="RELEASE NOTES "/>
-            </div>
-            <div class="form-group">
                 <label for="txtProjects">Projects:</label>
-                <input type="text" name="projects" class="form-control" id="txtProjects" placeholder="MS, SM"/>
+                <input type="text" name="projects" class="form-control" id="txtProjects" placeholder="MS,SM" required/>
                 <p class="help-block">Comma-separated list of the projects you are pasting in issues for.</p>
             </div>
             <div class="form-group">
+                <label for="selFont">Select a Font</label>
+                <select class="form-control" name="chosen_font" id="selFont">
+                    <option value="Arial">Arial</option>
+                    <option value="Helvetica Neue">Helvetica Neue</option>
+                    <option value="Tahoma" selected>Tahoma</option>
+                    <option value="Times New Roman">Times New Roman (lame)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="selFontSize">Pick a font size</label>
+                <select class="form-control" name="chosen_font_size" id="selFontSize">
+                    <option value="x-small">Extra Small</option>
+                    <option value="small" selected>Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="x-large">Extra Large</option>
+                </select>
+                <p class="help-block">This is the size that your entire message will appear in. Small is roughly "Normal" on Gmail.</p>
+            </div>
+            <div class="form-group">
+                <label>Output style</label>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="format-choice" id="vanilla" value="vanilla" checked>
+                        Vanilla
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="format-choice" id="colourful" value="colourful">
+                        Colourful (issue types will be coloured)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="issueTable">Table of issues, probably from Jira</label>
-                <textarea rows="10" cols="50" class="form-control" id="issueTable" name="issues" placeholder="You must include the table headers here"></textarea>
+                <textarea rows="10" class="form-control" id="issueTable" name="issues"
+                          placeholder="You must include the table headers!" required></textarea>
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>

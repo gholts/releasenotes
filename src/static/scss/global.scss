@@ -1,3 +1,31 @@
 body {
   padding-bottom: 70px;
 }
+
+.story-type {
+  background-color: #ffdd79;
+}
+
+.bug-type {
+  background-color: #d04437;
+  color: lightgrey;
+}
+
+.technical-debt-type {
+  background-color: grey;
+  color: lightgrey;
+}
+
+.spike-type {
+  background-color: purple;
+  color: white;
+}
+
+.improvement-type {
+  background-color: #009900;
+  color: white;
+}
+
+.injected-type {
+  color: red;
+}
