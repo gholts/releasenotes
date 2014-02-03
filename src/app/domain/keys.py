@@ -8,6 +8,10 @@ COLOURFUL_ISSUE_STRING = "[<span class='{4}'>{2}</span>] <a href='http://vendast
 
 
 class JIRA_TABLE_KEYS(object):
+    """
+    Keys that identify columns in the Jira column return
+    """
+
     KEY = "Key"
     SUMMARY = "Summary"
     ISSUE_TYPE = "Issue Type"
@@ -16,5 +20,9 @@ class JIRA_TABLE_KEYS(object):
 
 
 class FORMAT_KEYS(object):
+    """
+    Different formats that can be provided by the user
+    """
+
     VANILLA = "vanilla"
     COLOURFUL = "colourful"

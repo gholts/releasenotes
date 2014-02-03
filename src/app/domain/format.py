@@ -1,10 +1,10 @@
 """
 format
 """
-from keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING, COLOURFUL_ISSUE_STRING
+from app.domain.keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING, COLOURFUL_ISSUE_STRING
 
 
-def format_email_text(issue_list, products, format=FORMAT_KEYS.VANILLA):
+def format_email_text(issue_list, products, issue_format=FORMAT_KEYS.VANILLA):
     """
     Takes a list of issues and returns the full email required for a release
     """
@@ -28,7 +28,7 @@ def format_email_text(issue_list, products, format=FORMAT_KEYS.VANILLA):
         project = key.split("-")[0]
         tldr[project].append(summary)
 
-        if format == FORMAT_KEYS.COLOURFUL:
+        if issue_format == FORMAT_KEYS.COLOURFUL:
             issue_class = issue_type.lower().split(" ")
             issue_class = "-".join(issue_class) + "-type"
             formatted_string = COLOURFUL_ISSUE_STRING.format(key, summary, issue_type, status, issue_class)
