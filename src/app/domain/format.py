@@ -1,7 +1,8 @@
 """
 format
 """
-from app.domain.keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING, COLOURFUL_ISSUE_STRING
+from app.domain.keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING,\
+                            COLOURFUL_ISSUE_STRING, JIRA_ISSUE_TYPES
 
 
 def format_email_text(issue_list, products, issue_format=FORMAT_KEYS.VANILLA):
@@ -26,7 +27,9 @@ def format_email_text(issue_list, products, issue_format=FORMAT_KEYS.VANILLA):
 
         # Get the project
         project = key.split("-")[0]
-        tldr[project].append(summary)
+        # Add it to the tldr list if it's a story, only
+        if issue_type == JIRA_ISSUE_TYPES.STORY:
+            tldr[project].append(summary)
 
         if issue_format == FORMAT_KEYS.COLOURFUL:
             issue_class = issue_type.lower().split(" ")

@@ -3,7 +3,7 @@ root
 """
 
 from app.views import TemplatedView
-from app.domain.process_csv import parse_csv
+from app.domain.process_csv import parse_csv, verify_csv_dict_has_headers
 from app.domain.format import format_email_text
 
 class MainView(TemplatedView):
@@ -29,14 +29,23 @@ class MainView(TemplatedView):
         output_style = self.request.POST.get("format-choice")
 
         issue_list = parse_csv(issues)
+        try:
+            verified = verify_csv_dict_has_headers(issue_list)
+        except ValueError as ve:
+            verified = False
+            context["issues_error"] = "Your list of issues did not contain the header row!"
+            context["fields"] = self.request.POST
+            context["has_errors"] = True
 
-        project_list = [project.strip() for project in projects.split(',')]
+        if verified:
+            project_list = [project.strip() for project in projects.split(',')]
 
-        email_html = format_email_text(issue_list, project_list, issue_format=output_style)
+            email_html = format_email_text(issue_list, project_list, issue_format=output_style)
 
-        context["email_html"] = email_html
-        context["font"] = chosen_font
-        context["font_size"] = chosen_font_size
+            context["email_html"] = email_html
+            context["font"] = chosen_font
+            context["font_size"] = chosen_font_size
+
         self.get(**context)
 
 

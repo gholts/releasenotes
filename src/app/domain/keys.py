@@ -18,6 +18,22 @@ class JIRA_TABLE_KEYS(object):
     PRIORITY = "Priority"
     STATUS = "Status"
 
+    ALL = [KEY, SUMMARY, ISSUE_TYPE, PRIORITY, STATUS]
+
+
+class JIRA_ISSUE_TYPES(object):
+    """
+    Keys that identify issue types in Jira
+    """
+
+    STORY = "Story"
+    TECHNICAL_DEBT = "Technical Debt"
+    BUG = "Bug"
+    IMPROVEMENT = "Improvement"
+    SPIKE = "Spike"
+    INJECTED = "Injected"
+    EPIC = "Epic"
+
 
 class FORMAT_KEYS(object):
     """
