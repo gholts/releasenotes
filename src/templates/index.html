@@ -24,7 +24,12 @@
         <form action="/" method="post" role="form">
             <div class="form-group">
                 <label for="txtProjects">Projects:</label>
+                {% if has_errors %}
+                <input type="text" name="projects" class="form-control" id="txtProjects" placeholder="MS,SM"
+                       value="{{ fields.projects }}" required/>
+                {% else %}
                 <input type="text" name="projects" class="form-control" id="txtProjects" placeholder="MS,SM" required/>
+                {% endif %}
                 <p class="help-block">Comma-separated list of the projects you are pasting in issues for.</p>
             </div>
             <div class="form-group">
@@ -62,10 +67,16 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group{% if issues_error %} has-error{% endif %}">
                 <label for="issueTable">Table of issues, probably from Jira</label>
-                <textarea rows="10" class="form-control" id="issueTable" name="issues"
+                {% if issues_error %}
+                    <p>{{ issues_error }}</p>
+                    <textarea rows="10" class="form-control" id="issueTable" name="issues"
+                          placeholder="You must include the table headers!" required>{{ fields.issues }}</textarea>
+                {% else %}
+                    <textarea rows="10" class="form-control" id="issueTable" name="issues"
                           placeholder="You must include the table headers!" required></textarea>
+                {% endif %}
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
