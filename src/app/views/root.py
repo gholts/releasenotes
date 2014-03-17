@@ -33,7 +33,7 @@ class MainView(TemplatedView):
             verified = verify_csv_dict_has_headers(issue_list)
         except ValueError as ve:
             verified = False
-            context["issues_error"] = "Your list of issues did not contain the header row!"
+            context["issues_error"] = ve.message
             context["fields"] = self.request.POST
             context["has_errors"] = True
 

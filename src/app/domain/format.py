@@ -1,7 +1,7 @@
 """
 format
 """
-from app.domain.keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING,\
+from app.domain.keys import JIRA_TABLE_KEYS, FORMAT_KEYS, VANILLA_ISSUE_STRING, \
                             COLOURFUL_ISSUE_STRING, JIRA_ISSUE_TYPES
 
 
@@ -15,7 +15,7 @@ def format_email_text(issue_list, products, issue_format=FORMAT_KEYS.VANILLA):
         raise ValueError("Products cannot be empty")
 
     # Set up the tldr dictionaries
-    tldr = {product:[] for product in products}
+    tldr = {product:[] for product in products.decode('utf-8').split(',')}
 
     email_html = ""
 

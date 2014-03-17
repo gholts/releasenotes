@@ -2,6 +2,8 @@
 process_csv
 """
 import csv
+import logging
+import json
 
 from app.domain.keys import JIRA_TABLE_KEYS
 
@@ -16,6 +18,8 @@ def parse_csv(csv_string, line_terminator="\r\n", dialect="excel", delimiter="\t
     lines = []
     for line in reader:
         lines.append(line)
+
+    logging.info(json.dumps(lines))
 
     return lines
 
